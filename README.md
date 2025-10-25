@@ -1,5 +1,12 @@
 # BalanceIT
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Python 3.11+](https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white)](#)
+[![Django 4.x](https://img.shields.io/badge/Django-4.x-092E20?logo=django&logoColor=white)](#)
+[![Node.js 18+](https://img.shields.io/badge/Node.js-18%2B-339933?logo=node.js&logoColor=white)](#)
+[![Tailwind CSS 3.x](https://img.shields.io/badge/Tailwind_CSS-3.x-06B6D4?logo=tailwind-css&logoColor=white)](#)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#)
+
 An interactive Django application for analyzing imbalanced text datasets and training classifiers with resampling techniques.
 
 ## Features
@@ -9,6 +16,30 @@ An interactive Django application for analyzing imbalanced text datasets and tra
 - TF-IDF vectorization, train/test split, model training, and evaluation
 - Stores results and datasets per user; login/register flows
 - Tailwind CSS UI with ApexCharts visualizations
+
+## UI
+
+Below are snapshots of the BalanceIT interface:
+
+<div align="center">
+  <img src="screenshots/customize.png" alt="Customize screen" width="420" />
+  <img src="screenshots/customize2.png" alt="Customize step 2" width="420" />
+</div>
+
+<div align="center">
+  <img src="screenshots/customize3.png" alt="Customize step 3" width="420" />
+  <img src="screenshots/customize4.png" alt="Customize step 4" width="420" />
+</div>
+
+<div align="center">
+  <img src="screenshots/customize5.png" alt="Customize step 5" width="420" />
+  <img src="screenshots/customize6.png" alt="Customize step 6" width="420" />
+</div>
+
+<div align="center">
+  <img src="screenshots/customize7.png" alt="Customize step 7" width="420" />
+  <img src="screenshots/tut14.png" alt="Tutorial view" width="420" />
+</div>
 
 ## Tech Stack
 - Backend: Django 4, django-crispy-forms, django-formtools
