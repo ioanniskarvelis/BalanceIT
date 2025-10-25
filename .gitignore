@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.eggs/
+build/
+dist/
+*.log
+
+# Django
+/db.sqlite3
+/media/
+/staticfiles/
+
+# Environments
+.env
+*.env
+.venv/
+venv/
+
+# Node
+/node_modules/
+.pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp.*
+
+# Coverage
+.coverage
+coverage/
+htmlcov/
+
+# IDEs/Editors
+.vscode/
+.idea/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+$RECYCLE.BIN/

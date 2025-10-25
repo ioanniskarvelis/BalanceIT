@@ -1,0 +1,74 @@
+{% extends 'balanceit/layout.html' %}
+
+{% block title %}My classifications{% endblock %}
+
+{% block content %}
+
+<div class='flex-auto w-1/2 mx-auto flex flex-col justify-center'>
+
+
+    <h2 class="text-blue-900 text-4xl font-extrabold dark:text-white">My classifications</h2>
+    <p class="mt-3 lg:text-lg mb-1 sm:mb-12 text-blue-900">Here you can see all the classifications you have operated.</p>
+
+    {% if classifications %}
+    <p class="italic lg:text-lg mb-4 sm:mb-12 text-blue-900">Click on a classification to see more details or to delete it.</p>
+
+    {% endif %}
+    <hr class="h-px my-8 bg-blue-900 border-0 h-1 rounded">
+
+    {% if classifications %}
+
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">
+                        ID
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Dataset
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Sampler
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Classifier
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Created
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for classification in classifications %}
+                <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {{ classification.id }}
+                    </th>
+                    <td class="px-6 py-4">
+                        <a href="{% url 'view_dataset' classification.dataset.id %}" class="hover:underline ">{{ classification.dataset }}</a>
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ classification.sampler }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ classification.model }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ classification.created_at }}
+                    </td>
+                    <td class="px-6 py-4">
+                        <a href="{% url 'view_classification' classification.id %}" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">View</a>
+                    </td>
+                    <td class="px-6 py-4">
+                        <a href="{% url 'delete_classification' classification.id %}" class="font-medium text-red-600 dark:text-red-500 hover:underline">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+
+{% endblock %}

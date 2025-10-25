@@ -1,0 +1,43 @@
+{% extends 'balanceit/layout.html' %}
+
+{% block title %}Analyzer{% endblock %}
+
+{% block content %}
+<div class="flex-auto w-full mx-auto flex flex-col sm:flex-row items-center justify-center">
+    <div class="sm:w-5/12 xl:w-4/12 flex flex-col items-center sm:items-center text-center sm:text-center">
+        <h1 class="text-4xl lg:text-5xl text-blue-900 leading-none mb-4 font-black">Analyzer</h1>
+        <p class="lg:text-lg mb-4 sm:mb-12 text-blue-900">Upload your .csv, .tsv file and let us analyze it!</p>
+        {% if user.is_authenticated %}
+        <form id="upload-form" action="{% url 'analyze' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" id="file-input" name="dataset" accept=".csv, .tsv" style="display: none;" onchange="document.getElementById('upload-form').submit();">
+            <button
+                type="button"
+                style="font-weight: 600; text-decoration: none; color: white; font-size: 1.125rem; background-color: #f97316; border-color: #f97316; padding-top: 0.75rem; padding-bottom: 0.75rem; padding-left: 3rem; padding-right: 3rem; border-radius: 9999px; margin-right: 0.5rem; outline: none; box-shadow: none;" 
+                onmouseover="this.style.backgroundColor='#ea580c'; this.style.color='white';" 
+                onmouseout="this.style.backgroundColor='#f97316'; this.style.color='white';" 
+                onfocus="this.style.outline='none';" 
+                onactive="this.style.boxShadow='none';"
+                onclick="document.getElementById('file-input').click();">
+                Upload
+            </button>
+        </form>
+        {% else %}
+        <form action="{% url 'login' %}" method="get">
+            {% csrf_token %}
+            <input
+                type="submit"
+                value="Upload"
+                style="font-weight: 600; text-decoration: none; color: white; font-size: 1.125rem; background-color: #f97316; border-color: #f97316; padding-top: 0.75rem; padding-bottom: 0.75rem; padding-left: 3rem; padding-right: 3rem; border-radius: 9999px; margin-right: 0.5rem; outline: none; box-shadow: none;" 
+                onmouseover="this.style.backgroundColor='#ea580c'; this.style.color='white';" 
+                onmouseout="this.style.backgroundColor='#f97316'; this.style.color='white';" 
+                onfocus="this.style.outline='none';" 
+                onactive="this.style.boxShadow='none';"
+                onclick="document.getElementById('file-input').click();">
+            </input>
+        </form>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}

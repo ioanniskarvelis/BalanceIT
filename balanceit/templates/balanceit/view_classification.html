@@ -1,0 +1,98 @@
+{% extends 'balanceit/layout.html' %}
+{% load custom_filters %}
+
+{% block title %}Classification{% endblock %}
+
+{% block content %}
+
+<div class=' mt-5 flex-auto w-1/2 mx-auto flex flex-col justify-center'>
+    <div class='flex justify-between'>
+        <h1 class="text-blue-900 text-4xl font-extrabold dark:text-white">Classification ID: {{ classification.id }}</h1>
+    </div>
+    <p class="mt-3 lg:text-lg mb-1 sm:mb-12 text-blue-900">Here you can see all the parameters that involved in this classification.</p>
+
+    <hr class="h-px my-8 bg-blue-900 border-0 h-1 rounded">
+
+    <h1 class="mb-4 text-blue-900 text-3xl dark:text-white"><strong class='font-extrabold'><mark class="px-2 text-white bg-blue-900 rounded dark:bg-blue-500">Dataset</mark></strong></h1>
+
+    <h1 class="text-blue-900 text-2xl dark:text-white"><strong class='font-extrabold'>Filename:</strong>  {{ classification.dataset }}</h1>
+
+    <h1 class="text-blue-900 text-2xl dark:text-white"> <strong class='font-extrabold'>Target Column:</strong> {{ classification.target_column }}</h1>
+
+    <hr class="h-px my-8 bg-blue-900 border-0 h-1 rounded">
+
+    <h1 class="mb-4 text-blue-900 text-3xl dark:text-white"><strong class='font-extrabold'><mark class="px-2 text-white bg-blue-900 rounded dark:bg-blue-500">Sampler</mark></strong></h1>
+
+    <h1 class="text-blue-900 text-2xl dark:text-white"><strong class='font-extrabold'>Sampler Details:</strong>  {{ classification.sampler }}</h1>
+
+    {% with sampler_params=classification.sampler_parameters|json_decode %}
+        {% if sampler_params %}
+            <dl class="bg-white shadow-md rounded px-8 pt-2 mt-4 pb-8 mb-4 text-blue-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
+                <h1 class="mt-2 text-blue-900 text-2xl dark:text-white"><strong class='font-extrabold'>Sampler Parameters</strong></h1>
+                {% for param, value in sampler_params.items %}
+                    <div class="flex flex-col pt-3">
+                        <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ param }}</dt>
+                        <dd class="text-lg font-semibold">{{ value }}</dd>
+                    </div>
+                {% endfor %}
+            </dl>
+        {% endif %}
+    {% endwith %}
+
+    <hr class="h-px my-8 bg-blue-900 border-0 h-1 rounded">
+
+    <h1 class="mb-4 text-blue-900 text-3xl dark:text-white"><strong class='font-extrabold'><mark class="px-2 text-white bg-blue-900 rounded dark:bg-blue-500">Model</mark></strong></h1>
+    
+    <h1 class="text-blue-900 text-2xl dark:text-white"><strong class='font-extrabold'>Model Details:</strong> {{ classification.model }} </h1>
+    {% with model_params=classification.model_parameters|json_decode %}
+        {% if model_params %}
+            <dl class="bg-white shadow-md rounded px-8 pt-2 mt-4 pb-8 mb-4 text-blue-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
+                <h1 class="mt-2 text-blue-900 text-2xl dark:text-white"><strong class='font-extrabold'>Model Parameters</strong></h1>
+                {% for param, value in model_params.items %}
+                    <div class="flex flex-col pt-3">
+                        <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">{{ param }}</dt>
+                        <dd class="text-lg font-semibold">{{ value }}</dd>
+                    </div>
+                {% endfor %}
+            </dl>
+        {% endif %}
+    {% endwith %}
+
+    <hr class="h-px my-8 bg-blue-900 border-0 h-1 rounded">
+
+    <h1 class="mb-4 text-blue-900 text-3xl dark:text-white"><strong class='font-extrabold'><mark class="px-2 text-white bg-blue-900 rounded dark:bg-blue-500">Evaluation</mark></strong></h1>
+    
+    <dl class="bg-white shadow-md rounded px-8 pt-2 mt-4 pb-8 mb-4 text-blue-900 divide-y divide-gray-200 dark:text-white dark:divide-gray-700">
+        <h1 class="mt-2 text-blue-900 text-2xl dark:text-white"><strong class='font-extrabold'>Metrics</strong></h1>
+        <div class="flex flex-col pt-3">
+            <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Accuracy</dt>
+            <dd class="text-lg font-semibold">{{ classification.accuracy }}</dd>
+        </div>
+        <div class="flex flex-col pt-3">
+            <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Precision</dt>
+            <dd class="text-lg font-semibold">{{ classification.precision }}</dd>
+        </div>
+        <div class="flex flex-col pt-3">
+            <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Recall</dt>
+            <dd class="text-lg font-semibold">{{ classification.recall }}</dd>
+        </div>
+        <div class="flex flex-col pt-3">
+            <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">F1-score</dt>
+            <dd class="text-lg font-semibold">{{ classification.f1_score }}</dd>
+        </div>
+        <div class="flex flex-col pt-3">
+            <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">ROC-AUC score</dt>
+            <dd class="text-lg font-semibold">{{ classification.roc_auc }}</dd>
+        </div>
+        <div class="flex flex-col pt-3">
+            <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Geometric Mean</dt>
+            <dd class="text-lg font-semibold">{{ classification.gmean }}</dd>
+        </div>
+        <div class="flex flex-col pt-3">
+            <dt class="mb-1 text-gray-500 md:text-lg dark:text-gray-400">Phi coefficient</dt>
+            <dd class="text-lg font-semibold">{{ classification.mcc }}</dd>
+        </div>
+    </dl>
+</div>
+
+{% endblock %}

@@ -1,0 +1,116 @@
+{% extends 'balanceit/layout.html' %}
+
+{% block title %}Classification{% endblock %}
+
+{% block content %}
+<div class='mt-5 flex-auto w-1/2 mx-auto flex flex-col justify-center items-center'>
+    <div id="steps-container" class='text-blue-900 text-2xl'></div>
+    <div id="final-output" class="text-blue-900 text-2xl"></div>
+</div>
+
+<script>
+    const trainingParams = {
+        dataset: "{{ dataset }}",
+        target: "{{ target }}",
+        sampler: "{{ sampler }}",
+        sampler_parameters: "{{ sampler_parameters }}",
+        model: "{{ model }}",
+        model_parameters: "{{ model_parameters }}"
+    };
+
+    function updateSteps(stepIndex = 0) {
+        const formData = new FormData();
+        formData.append('step', stepIndex);
+        for (const [key, value] of Object.entries(trainingParams)) {
+            formData.append(key, value);
+        }
+        
+        fetch('/update-steps/', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('steps-container');
+            container.innerHTML = '<h2 class="mb-2 text-blue-900 text-4xl font-extrabold dark:text-white">Classification Sequence</h2>';
+            container.innerHTML += '<ul class="max-w-md space-y-2 text-gray-500 list-inside dark:text-gray-400">';
+            
+            data.steps.forEach(step => {
+                let icon;
+                if (step.status === 'completed') {
+                    icon = '<svg class="mr-3 w-4 h-4 me-2 text-green-500 dark:text-green-400 flex-shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20"><path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/></svg>';
+                } else {
+                    icon = '<div role="status"><svg aria-hidden="true" class="mr-3 w-4 h-4 me-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/><path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/></svg><span class="sr-only">Loading...</span></div>';
+                }
+
+                if(step.output){
+                    container.innerHTML += `
+                    <li class="mb-2 list-none">
+                        <div class="flex items-center space-x-2">
+                            <span class="icon-class">${icon}</span>
+                            <span class="message-class">${step.message}</span>
+                        </div>
+                        <div class="flex items-center space-x-2 text-xl italic text-blue-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" style="transform: rotate(90deg);" width="30px" height="30px" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M17.5303 10.0303C17.8232 9.73744 17.8232 9.26256 17.5303 8.96967L12.5303 3.96967C12.2374 3.67678 11.7626 3.67678 11.4697 3.96967L6.46967 8.96967C6.17678 9.26256 6.17678 9.73744 6.46967 10.0303C6.76256 10.3232 7.23744 10.3232 7.53033 10.0303L11.25 6.31066L11.25 14.5C11.25 15.2133 11.0298 16.3 10.3913 17.1868C9.7804 18.0353 8.75556 18.75 7 18.75C6.58579 18.75 6.25 19.0858 6.25 19.5C6.25 19.9142 6.58579 20.25 7 20.25C9.24444 20.25 10.7196 19.298 11.6087 18.0632C12.4702 16.8667 12.75 15.4534 12.75 14.5L12.75 6.31066L16.4697 10.0303C16.7626 10.3232 17.2374 10.3232 17.5303 10.0303Z" fill="#1C274C"/></svg>
+                            <div class="output-class mt-2">${step.output}</div>
+                        </div>
+                    </li>
+                 `;
+                }
+                else{
+                    container.innerHTML += `
+                    <li class="mb-2 list-none">
+                        <div class="flex items-center space-x-2">
+                            <span class="icon-class">${icon}</span>
+                            <span class="message-class">${step.message}</span>
+                        </div>
+
+                    </li>
+                 `;
+                }
+            });
+            
+            container.innerHTML += '</ul>';
+            
+            if (!data.completed) {
+                setTimeout(() => updateSteps(data.next_step), 1000);  // Update every second
+            } else if (data.df_head) {
+                displayDataFrameHead(data.df_head, data.df_columns);
+            }
+        });
+    }
+
+    function displayDataFrameHead(dfHead, columns) {
+        const container = document.getElementById('df-head-container');
+        container.innerHTML = '<h2>DataFrame Head</h2>';
+        const table = document.createElement('table');
+        
+        // Create header row
+        const headerRow = document.createElement('tr');
+        columns.forEach(column => {
+            const th = document.createElement('th');
+            th.textContent = column;
+            headerRow.appendChild(th);
+        });
+        table.appendChild(headerRow);
+
+        // Create data rows
+        dfHead.forEach(row => {
+            const tr = document.createElement('tr');
+            columns.forEach(column => {
+                const td = document.createElement('td');
+                td.textContent = row[column];
+                tr.appendChild(td);
+            });
+            table.appendChild(tr);
+        });
+
+        container.appendChild(table);
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        updateSteps();
+    });
+</script>
+
+{% endblock %}

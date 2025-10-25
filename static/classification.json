@@ -1,0 +1,1236 @@
+{
+    "samplers": [
+      {
+        "name": "No sampler",
+        "value": "none",
+        "parameters": []
+      },
+      {
+        "name": "ADASYN",
+        "value": "adasyn",
+        "parameters": [
+          {
+            "name": "sampling_strategy",
+            "type": "choice",
+            "default": "auto",
+            "choices": ["minority", "not minority", "not majority", "all", "auto"],
+            "description": "Specify the class targeted by the resampling"
+          },
+          {
+            "name": "n_neighbors",
+            "type": "int",
+            "default": 5,
+            "description": "Number of nearest neighbors to use"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          }
+        ]
+      },
+      {
+        "name": "SMOTE",
+        "value": "smote",
+        "parameters": [
+          {
+            "name": "sampling_strategy",
+            "type": "choice",
+            "default": "auto",
+            "choices": ["minority", "not minority", "not majority", "all", "auto"],
+            "description": "Specify the class targeted by the resampling"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          },
+          {
+            "name": "k_neighbors",
+            "type": "int",
+            "default": 5,
+            "description": "Number of nearest neighbors to use"
+          }
+        ]
+      },
+      {
+        "name": "RandomOverSampler",
+        "value": "random_over_sampler",
+        "parameters": [
+          {
+            "name": "sampling_strategy",
+            "type": "choice",
+            "default": "auto",
+            "choices": ["minority", "not minority", "not majority", "all", "auto"],
+            "description": "Specify the class targeted by the resampling"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          },
+          {
+            "name": "shrinkage",
+            "type": "float",
+            "default": null,
+            "description": "Parameter controlling the shrinkage applied to the covariance matrix"
+          }
+        ]
+      },
+      {
+        "name": "OneSidedSelection",
+        "value": "one_sided_selection",
+        "parameters": [
+          {
+            "name": "sampling_strategy",
+            "type": "choice",
+            "default": "auto",
+            "choices": ["minority", "not minority", "not majority", "all", "auto"],
+            "description": "Specify the class targeted by the resampling"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          },
+          {
+            "name": "n_neighbors",
+            "type": "int",
+            "default": null,
+            "description": "Number of nearest neighbors to use"
+          },
+          {
+            "name": "n_seeds_S",
+            "type": "int",
+            "default": 1,
+            "description": "Number of samples to extract in order to build the set S"
+          }
+        ]
+      },
+      {
+        "name": "KMeansSMOTE",
+        "value": "kmeans_smote",
+        "parameters": [
+          {
+            "name": "sampling_strategy",
+            "type": "choice",
+            "default": "auto",
+            "choices": ["minority", "not minority", "not majority", "all", "auto"],
+            "description": "Specify the class targeted by the resampling"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator" 
+          },
+          {
+            "name": "k_neighbors",
+            "type": "int",
+            "default": 2,
+            "description": "Number of nearest neighbors to use"
+          },
+          {
+            "name": "cluster_balance_threshold",
+            "type": "float",
+            "default": "auto",
+            "description": "Threshold for the balance of clusters"
+          },
+          {
+            "name": "density_exponent",
+            "type": "float",
+            "default": "auto",
+            "description": "Exponent for the density of the clusters"
+          }
+        ]
+      },
+      {
+        "name": "RandomUnderSampler",
+        "value": "random_under_sampler",
+        "parameters": [
+          {
+            "name": "sampling_strategy",
+            "type": "choice",
+            "default": "auto",
+            "choices": ["majority", "not minority", "not majority", "all", "auto"],
+            "description": "Specify the class targeted by the resampling"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          },
+          {
+            "name": "replacement",
+            "type": "bool",
+            "default": false,
+            "description": "Whether or not to sample with replacement"
+          }
+        ]
+      }
+    ],
+    "models": [
+      {
+        "name": "Random Forest",
+        "value": "random_forest",
+        "parameters": [
+          {
+            "name": "n_estimators",
+            "type": "int",
+            "default": 100,
+            "description": "The number of trees in the forest"
+          },
+          {
+            "name": "max_depth",
+            "type": "int",
+            "default": null,
+            "description": "The maximum depth of the tree. If None, then nodes are expanded until all leaves are pure or until all leaves contain less than min_samples_split samples"
+          },
+          {
+            "name": "min_samples_split",
+            "type": "int",
+            "default": 2,
+            "description": "The minimum number of samples required to split an internal node"
+          },
+          {
+            "name": "min_samples_leaf",
+            "type": "int",
+            "default": 1,
+            "description": "The minimum number of samples required to be at a leaf node"
+          },
+          {
+            "name": "max_features",
+            "type": "choice",
+            "default": "sqrt",
+            "choices": ["sqrt", "log2", null],
+            "description": "The number of features to consider when looking for the best split"
+          },
+          {
+            "name": "min_weight_fraction_leaf",
+            "type": "float",
+            "default": 0.0,
+            "description": "The minimum weighted fraction of the sum total of weights (of all the input samples) required to be at a leaf node"
+          },
+          {
+            "name": "max_leaf_nodes",
+            "type": "int",
+            "default": null,
+            "description": "Grow trees with max_leaf_nodes in best-first fashion"
+          },
+          {
+            "name": "min_impurity_decrease",
+            "type": "float",
+            "default": 0.0,
+            "description": "A node will be split if this split induces a decrease of the impurity greater than or equal to this value"
+          },
+          {
+            "name": "bootstrap",
+            "type": "bool",
+            "default": true,
+            "description": "Whether bootstrap samples are used when building trees"
+          },
+          {
+            "name": "oob_score",
+            "type": "bool",
+            "default": false,
+            "description": "Whether to use out-of-bag samples to estimate the generalization accuracy"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          },
+          {
+            "name": "class_weight",
+            "type": "choice",
+            "default": "balanced",
+            "choices": ["balanced", "balanced_subsample", null],
+            "description": "Weights associated with classes in the form {class_label: weight}"
+          },
+          {
+            "name": "ccp_alpha",
+            "type": "float",
+            "default": 0.0,
+            "description": "Complexity parameter used for Minimal Cost-Complexity Pruning"
+          },
+          {
+            "name": "max_samples",
+            "type": "float",
+            "default": null,
+            "description": "If bootstrap is True, the number of samples to draw from X to train each base estimator"
+          },
+          {
+            "name": "warm_start",
+            "type": "bool",
+            "default": false,
+            "description": "When set to True, reuse the solution of the previous call to fit and add more estimators to the ensemble, otherwise, just fit a whole new forest"
+          }
+
+        ]
+      },
+      {
+        "name": "Logistic Regression",
+        "value": "logistic_regression",
+        "parameters": [
+          {
+            "name": "C",
+            "type": "float",
+            "default": 1.0,
+            "description": "Inverse of regularization strength; must be a positive float. Like in support vector machines, smaller values specify stronger regularization"
+          },
+          {
+            "name": "max_iter",
+            "type": "int",
+            "default": 100,
+            "description": "Maximum number of iterations taken for the solvers to converge"
+          }
+        ]
+      },
+      {
+        "name": "XGBClassifier",
+        "value": "xgb_classifier",
+        "parameters": [
+          {
+            "name": "n_estimators",
+            "type": "int",
+            "default": 1,
+            "description": "Number of boosting rounds"
+          },
+          {
+            "name": "booster",
+            "type": "choice",
+            "default": "gbtree",
+            "choices": ["gbtree", "gblinear", "dart"],
+            "description": "Which booster to use"
+          },
+          {
+            "name": "max_depth",
+            "type": "int",
+            "default": 6,
+            "description": "Maximum depth of a tree"
+          },
+          {
+            "name": "dart_normalized_type",
+            "type": "choice",
+            "default": "TREE",
+            "choices": ["TREE", "FOREST"],
+            "description": "Type of normalization algorithm"
+          },
+          {
+            "name": "tree_method",
+            "type": "choice",
+            "default": "auto",
+            "choices": ["auto", "exact", "approx", "hist"],
+            "description": "The tree construction algorithm used in XGBoost"
+          },
+          {
+            "name": "learning_rate",
+            "type": "float",
+            "default": 0.3,
+            "description": "Step size shrinkage used in update to prevents overfitting"
+          },
+          {
+            "name": "gamma",
+            "type": "float",
+            "default": 0,
+            "description": "Minimum loss reduction required to make a further partition on a leaf node of the tree"
+          },
+          {
+            "name": "min_child_weight",
+            "type": "float",
+            "default": 1,
+            "description": "Minimum sum of instance weight (hessian) needed in a child"
+          },
+          {
+            "name": "subsample",
+            "type": "float",
+            "default": 1,
+            "description": "Subsample ratio of the training instances"
+          },
+          {
+            "name": "colsample_bytree",
+            "type": "float",
+            "default": 1,
+            "description": "Subsample ratio of columns when constructing each tree"
+          },
+          {
+            "name": "colsample_bylevel",
+            "type": "float",
+            "default": 1,
+            "description": "Subsample ratio of columns for each level"
+          },
+          {
+            "name": "colsample_bynode",
+            "type": "float",
+            "default": 1,
+            "description": "Subsample ratio of columns for each split"
+          },
+          {
+            "name": "reg_alpha",
+            "type": "float",
+            "default": 0,
+            "description": "L1 regularization term on weights"
+          },
+          {
+            "name": "reg_lambda",
+            "type": "float",
+            "default": 1,
+            "description": "L2 regularization term on weights"
+          },
+          {
+            "name": "scale_pos_weight",
+            "type": "float",
+            "default": 1,
+            "description": "Control the balance of positive and negative weights"
+          },
+          {
+            "name": "max_iterations",
+            "type": "int",
+            "default": 20,
+            "description": "Maximum number of iterations taken for the solvers to converge"
+          },
+          {
+            "name": "tol",
+            "type": "float",
+            "default": 0.01,
+            "description": "Tolerance for stopping criteria"
+          },
+          {
+            "name": "enable_global_explain",
+            "type": "bool",
+            "default": false,
+            "description": "Enable global explainability for the model"
+          }
+
+        ]
+      },
+      {
+        "name" : "LightGBM",
+        "value": "lightgbm",
+        "parameters" :[
+          {
+            "name": "objective",
+            "type": "choice",
+            "default": "regression",
+            "choices": [
+                        "regression", "regression_l1", "huber", "fair", "poisson", "quantile", 
+                        "mape", "gamma", "tweedie", "binary", "multiclass", "multiclassova", "cross_entropy",
+                        "cross_entropy_lambda", "lambdarank", "rank_xendcg"
+                      ],
+            "description": "The objective function to optimize"
+          },
+          {
+            "name": "boosting",
+            "type": "choice",
+            "default": "gbdt",
+            "choices": ["gbdt", "rf", "dart"],
+            "description": "The type of boosting to use"
+          },
+          {
+            "name": "data_sample_strategy",
+            "type": "choice",
+            "default": "bagging",
+            "choices": ["bagging", "goss"],
+            "description": "The type of data sampling strategy"
+          },
+          {
+            "name": "num_iterations",
+            "type": "int",
+            "default": 100,
+            "description": "Number of boosting iterations"
+          },
+          {
+            "name": "learning_rate",
+            "type": "float",
+            "default": 0.1,
+            "description": "The learning rate"
+          },
+          {
+            "name": "num_leaves",
+            "type": "int",
+            "default": 31,
+            "description": "Maximum number of leaves in one tree"
+          },
+          {
+            "name": "tree_learner",
+            "type": "choice",
+            "default": "serial",
+            "choices": ["serial", "feature", "data", "voting"],
+            "description": "Type of tree learner"
+          },
+          {
+            "name": "seed",
+            "type": "int",
+            "default": 0,
+            "description": "Seed for random number generator"
+          }
+        ]
+      },
+      {
+        "name": "AdaBoostClassifier",
+        "value": "adaboost_classifier",
+        "parameters": [
+          {
+            "name": "n_estimators",
+            "type": "int",
+            "default": 50,
+            "description": "The maximum number of estimators at which boosting is terminated"
+          },
+          {
+            "name": "learning_rate",
+            "type": "float",
+            "default": 1.0,
+            "description": "Learning rate shrinks the contribution of each classifier"
+          },
+          {
+            "name": "algorithm",
+            "type": "choice",
+            "default": "SAMME.R",
+            "choices": ["SAMME", "SAMME.R"],
+            "description": "If SAMME.R then use the SAMME.R real boosting algorithm"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          }
+        ]
+      },
+      {
+        "name": "AdaUBoostClassifier",
+        "value": "adauboost_classifier",
+        "parameters": [
+          {
+            "name": "n_estimators",
+            "type": "int",
+            "default": 50,
+            "description": "The maximum number of estimators at which boosting is terminated"
+          },
+          {
+            "name": "learning_rate",
+            "type": "float",
+            "default": 1.0,
+            "description": "Learning rate shrinks the contribution of each classifier"
+          },
+          {
+            "name": "algorithm",
+            "type": "choice",
+            "default": "SAMME.R",
+            "choices": ["SAMME", "SAMME.R"],
+            "description": "If SAMME.R then use the SAMME.R real boosting algorithm"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          },
+          {
+            "name": "early_termination",
+            "type": "bool",
+            "default": false,
+            "description": "Enable early termination"
+          }
+        ]
+      },
+      {
+        "name": "AsymBoostClassifier",
+        "value": "asymboost_classifier",
+        "parameters": [
+          {
+            "name": "n_estimators",
+            "type": "int",
+            "default": 50,
+            "description": "The maximum number of estimators at which boosting is terminated"
+          },
+          {
+            "name": "learning_rate",
+            "type": "float",
+            "default": 1.0,
+            "description": "Learning rate shrinks the contribution of each classifier"
+          },
+          {
+            "name": "algorithm",
+            "type": "choice",
+            "default": "SAMME.R",
+            "choices": ["SAMME", "SAMME.R"],
+            "description": "If SAMME.R then use the SAMME.R real boosting algorithm"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          },
+          {
+            "name": "early_termination",
+            "type": "bool",
+            "default": false,
+            "description": "Enable early termination"
+          }
+        ]
+      },
+      {
+        "name": "CompatibleAdaBoostClassifier",
+        "value": "compatible_adaboost_classifier",
+        "parameters": [
+          {
+            "name": "n_estimators",
+            "type": "int",
+            "default": 50,
+            "description": "The maximum number of estimators at which boosting is terminated"
+          },
+          {
+            "name": "learning_rate",
+            "type": "float",
+            "default": 1.0,
+            "description": "Learning rate shrinks the contribution of each classifier"
+          },
+          {
+            "name": "algorithm",
+            "type": "choice",
+            "default": "SAMME.R",
+            "choices": ["SAMME", "SAMME.R"],
+            "description": "If SAMME.R then use the SAMME.R real boosting algorithm"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          },
+          {
+            "name": "early_termination",
+            "type": "bool",
+            "default": false,
+            "description": "Enable early termination"
+          }
+        ]
+      },
+      {
+        "name": "GradientBoostingClassifier",
+        "value": "gradient_boosting_classifier",
+        "parameters":[
+          {
+            "name": "loss",
+            "type": "choice",
+            "default": "logloss",
+            "choices": ["logloss", "exponential"],
+            "description": "Loss function to be optimized"
+          },
+          {
+            "name": "learning_rate",
+            "type": "float",
+            "default": 0.1,
+            "description": "The learning rate shrinks the contribution of each tree"
+          },
+          {
+            "name": "n_estimators",
+            "type": "int",
+            "default": 100,
+            "description": "The number of boosting stages to be run"
+          },
+          {
+            "name": "subsample",
+            "type": "float",
+            "default": 1.0,
+            "description": "The fraction of samples to be used for fitting the individual base learners"
+          },
+          {
+            "name": "criterion",
+            "type": "choice",
+            "default": "friedman_mse",
+            "choices": ["friedman_mse", "squared_error"],
+            "description": "The function to measure the quality of a split"
+          },
+          {
+            "name": "min_samples_split",
+            "type": "int",
+            "default": 2,
+            "description": "The minimum number of samples required to split an internal node"
+          },
+          {
+            "name": "min_samples_leaf",
+            "type": "int",
+            "default": 1,
+            "description": "The minimum number of samples required to be at a leaf node"
+          },
+          {
+            "name": "max_depth",
+            "type": "int",
+            "default": 3,
+            "description": "The maximum depth of the individual regression estimators"
+          },
+          {
+            "name": "min_weight_fraction_leaf",
+            "type": "float",
+            "default": 0.0,
+            "description": "The minimum weighted fraction of the sum total of weights (of all the input samples) required to be at a leaf node"
+          },
+          {
+            "name": "min_impurity_decrease",
+            "type": "float",
+            "default": 0.0,
+            "description": "A node will be split if this split induces a decrease of the impurity greater than or equal to this value"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          },
+          {
+            "name": "max_features",
+            "type": "choice",
+            "default": null,
+            "choices": ["auto", "sqrt", "log2"],
+            "description": "The number of features to consider when looking for the best split"
+          },
+          {
+            "name": "max_leaf_nodes",
+            "type": "int",
+            "default": null,
+            "description": "Grow trees with max_leaf_nodes in best-first fashion"
+          },
+          {
+            "name": "warm_start",
+            "type": "bool",
+            "default": false,
+            "description": "When set to True, reuse the solution of the previous call to fit and add more estimators to the ensemble, otherwise, just fit a whole new forest"
+          },
+          {
+            "name": "validation_fraction",
+            "type": "float",
+            "default": 0.1,
+            "description": "The proportion of training data to set aside as validation set for early stopping"
+          },
+          {
+            "name": "n_iter_no_change",
+            "type": "int",
+            "default": null,
+            "description": "Number of iterations with no improvement to wait before stopping fitting"
+          },
+          {
+            "name": "tol",
+            "type": "float",
+            "default": 1e-4,
+            "description": "Tolerance for the early stopping"
+          },
+          {
+            "name": "ccp_alpha",
+            "type": "float",
+            "default": 0.0,
+            "description": "Complexity parameter used for Minimal Cost-Complexity Pruning"
+          }
+        ]
+      },
+      {
+        "name": "HistGradientBoostingClassifier",
+        "value": "hist_gradient_boosting_classifier",
+        "parameters": [
+          {
+            "name": "learning_rate",
+            "type": "float",
+            "default": 0.1,
+            "description": "The learning rate shrinks the contribution of each tree"
+          },
+          {
+            "name": "max_iter",
+            "type": "int",
+            "default": 100,
+            "description": "The maximum number of iterations to be run"
+          },
+          {
+            "name": "max_leaf_nodes",
+            "type": "int",
+            "default": 31,
+            "description": "The maximum number of leaves for each tree"
+          },
+          {
+            "name": "max_depth",
+            "type": "int",
+            "default": null,
+            "description": "The maximum depth of the individual regression estimators"
+          },
+          {
+            "name": "min_samples_leaf",
+            "type": "int",
+            "default": 20,
+            "description": "The minimum number of samples per leaf"
+          },
+          {
+            "name": "l2_regularization",
+            "type": "float",
+            "default": 0.0,
+            "description": "The L2 regularization parameter"
+          },
+          {
+            "name": "max_features",
+            "type": "float",
+            "default": 1.0,
+            "description": "The fraction of features to consider when looking for the best split"
+          },
+          {
+            "name": "max_bins",
+            "type": "int",
+            "default": 255,
+            "description": "The maximum number of bins to use for discretization"
+          },
+          {
+            "name": "warm_start",
+            "type": "bool",
+            "default": false,
+            "description": "When set to True, reuse the solution of the previous call to fit and add more estimators to the ensemble, otherwise, just fit a whole new forest"
+          },
+          {
+            "name": "early_stopping",
+            "type": "bool",
+            "default": "auto",
+            "description": "Whether to use early stopping to terminate training when validation score is not improving"
+          },
+          {
+            "name": "validation_fraction",
+            "type": "float",
+            "default": 0.1,
+            "description": "The proportion of training data to set aside as validation set for early stopping"
+          },
+          {
+            "name": "n_iter_no_change",
+            "type": "int",
+            "default": 10,
+            "description": "Number of iterations with no improvement to wait before stopping fitting"
+          },
+          {
+            "name": "tol",
+            "type": "float",
+            "default": 1e-7,
+            "description": "Tolerance for the early stopping"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          }
+        ]
+      },
+      {
+        "name": "SMOTEBoostClassifier",
+        "value": "smote_boost_classifier",
+        "parameters": [
+          {
+            "name": "n_estimators",
+            "type": "int",
+            "default": 50,
+            "description": "The maximum number of estimators at which boosting is terminated"
+          },
+          {
+            "name": "k_neighbors",
+            "type": "int",
+            "default": 5,
+            "description": "Number of nearest neighbors to use"
+          },
+          {
+            "name": "learning_rate",
+            "type": "float",
+            "default": 1.0,
+            "description": "Learning rate shrinks the contribution of each classifier"
+          },
+          {
+            "name": "algorithm",
+            "type": "choice",
+            "default": "SAMME.R",
+            "choices": ["SAMME", "SAMME.R"],
+            "description": "If SAMME.R then use the SAMME.R real boosting algorithm"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          },
+          {
+            "name": "early_termination",
+            "type": "bool",
+            "default": false,
+            "description": "Enable early termination"
+          }
+        ]
+      },
+      {
+        "name": "RUSBoostClassifier",
+        "value": "rus_boost_classifier",
+        "parameters":[
+          {
+            "name": "n_estimators",
+            "type": "int",
+            "default": 50,
+            "description": "The maximum number of estimators at which boosting is terminated"
+          },
+          {
+            "name": "learning_rate",
+            "type": "float",
+            "default": 1.0,
+            "description": "Learning rate shrinks the contribution of each classifier"
+          },
+          {
+            "name": "algorithm",
+            "type": "choice",
+            "default": "SAMME.R",
+            "choices": ["SAMME", "SAMME.R"],
+            "description": "If SAMME.R then use the SAMME.R real boosting algorithm"
+          },
+          {
+            "name": "sampling_strategy",
+            "type": "choice",
+            "default": "auto",
+            "choices": ["minority", "not minority", "not majority", "all", "auto"],
+            "description": "Specify the class targeted by the resampling"
+          },
+          {
+            "name": "replacement",
+            "type": "bool",
+            "default": false,
+            "description": "Whether or not to sample with replacement"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          }
+        ]
+      },
+      {
+        "name": "AdaCostClassifier",
+        "value": "ada_cost_classifier",
+        "parameters": [
+          {
+            "name": "n_estimators",
+            "type": "int",
+            "default": 50,
+            "description": "The maximum number of estimators at which boosting is terminated"
+          },
+          {
+            "name": "learning_rate",
+            "type": "float",
+            "default": 1.0,
+            "description": "Learning rate shrinks the contribution of each classifier"
+          },
+          {
+            "name": "algorithm",
+            "type": "choice",
+            "default": "SAMME.R",
+            "choices": ["SAMME", "SAMME.R"],
+            "description": "If SAMME.R then use the SAMME.R real boosting algorithm"
+          },
+          {
+            "name": "early_termination",
+            "type": "bool",
+            "default": false,
+            "description": "Enable early termination"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          },
+          {
+            "name": "cost_matrix",
+            "type": "array",
+            "default": null,
+            "description": "Cost matrix"
+          }
+        ]
+      },
+      {
+        "name": "OverBoostClassifier",
+        "value": "over_boost_classifier",
+        "parameters": [
+          {
+            "name": "n_estimators",
+            "type": "int",
+            "default": 50,
+            "description": "The maximum number of estimators at which boosting is terminated"
+          },
+          {
+            "name": "learning_rate",
+            "type": "float",
+            "default": 1.0,
+            "description": "Learning rate shrinks the contribution of each classifier"
+          },
+          {
+            "name": "algorithm",
+            "type": "choice",
+            "default": "SAMME.R",
+            "choices": ["SAMME", "SAMME.R"],
+            "description": "If SAMME.R then use the SAMME.R real boosting algorithm"
+          },
+          {
+            "name": "early_termination",
+            "type": "bool",
+            "default": false,
+            "description": "Enable early termination"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          }
+        ]
+      },
+      {
+        "name": "SelfPacedEnsembleClassifier",
+        "value": "self_paced_ensemble_classifier",
+        "parameters": [
+          {
+            "name": "n_estimators",
+            "type": "int",
+            "default": 50,
+            "description": "The maximum number of estimators at which boosting is terminated"
+          },
+          {
+            "name": "k_bins",
+            "type": "int",
+            "default": 5,
+            "description": "Number of bins for the self-paced learning"
+          },
+          {
+            "name": "soft_resample_flag",
+            "type": "bool",
+            "default": false,
+            "description": "Whether to use soft resampling"
+          },
+          {
+            "name": "replacement",
+            "type": "bool",
+            "default": true,
+            "description": "Whether or not to sample with replacement"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          }
+        ]
+      },
+      {
+        "name": "BaggingClassifier",
+        "value": "bagging_classifier",
+        "parameters": [
+          {
+            "name": "n_estimators",
+            "type": "int",
+            "default": 10,
+            "description": "The number of base estimators in the ensemble"
+          },
+          {
+            "name": "max_samples",
+            "type": "float",
+            "default": 1.0,
+            "description": "The number of samples to draw from X to train each base estimator"
+          },
+          {
+            "name": "max_features",
+            "type": "float",
+            "default": 1.0,
+            "description": "The number of features to draw from X to train each base estimator"
+          },
+          {
+            "name": "bootstrap",
+            "type": "bool",
+            "default": true,
+            "description": "Whether samples are drawn with replacement"
+          },
+          {
+            "name": "bootstrap_features",
+            "type": "bool",
+            "default": false,
+            "description": "Whether features are drawn with replacement"
+          },
+          {
+            "name": "oob_score",
+            "type": "bool",
+            "default": false,
+            "description": "Whether to use out-of-bag samples to estimate the generalization accuracy"
+          },
+          {
+            "name": "warm_start",
+            "type": "bool",
+            "default": false,
+            "description": "When set to True, reuse the solution of the previous call to fit and add more estimators to the ensemble, otherwise, just fit a whole new forest"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          }
+        ]
+      },
+      {
+        "name": "BalancedBaggingClassifier",
+        "value": "balanced_bagging_classifier",
+        "parameters": [
+          {
+            "name": "n_estimators",
+            "type": "int",
+            "default": 10,
+            "description": "The number of base estimators in the ensemble"
+          },
+          {
+            "name": "max_samples",
+            "type": "float",
+            "default": 1.0,
+            "description": "The number of samples to draw from X to train each base estimator"
+          },
+          {
+            "name": "max_features",
+            "type": "float",
+            "default": 1.0,
+            "description": "The number of features to draw from X to train each base estimator"
+          },
+          {
+            "name": "bootstrap",
+            "type": "bool",
+            "default": true,
+            "description": "Whether samples are drawn with replacement"
+          },
+          {
+            "name": "bootstrap_features",
+            "type": "bool",
+            "default": false,
+            "description": "Whether features are drawn with replacement"
+          },
+          {
+            "name": "oob_score",
+            "type": "bool",
+            "default": false,
+            "description": "Whether to use out-of-bag samples to estimate the generalization accuracy"
+          },
+          {
+            "name": "warm_start",
+            "type": "bool",
+            "default": false,
+            "description": "When set to True, reuse the solution of the previous call to fit and add more estimators to the ensemble, otherwise, just fit a whole new forest"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          },
+          {
+            "name": "sampling_strategy",
+            "type": "choice",
+            "default": "auto",
+            "choices": ["majority", "not minority", "not majority", "all", "auto"],
+            "description": "Specify the class targeted by the resampling"
+          },
+          {
+            "name": "replacement",
+            "type": "bool",
+            "default": false,
+            "description": "Whether or not to sample with replacement"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          }
+        ]
+      },
+      {
+        "name": "SVC",
+        "value": "svc",
+        "parameters": [
+          {
+            "name": "C",
+            "type": "float",
+            "default": 1.0,
+            "description": "Regularization parameter"
+          },
+          {
+            "name": "kernel",
+            "type": "choice",
+            "default": "rbf",
+            "choices": ["linear", "poly", "rbf", "sigmoid", "precomputed"],
+            "description": "Specifies the kernel type to be used in the algorithm"
+          },
+          {
+            "name": "degree",
+            "type": "int",
+            "default": 3,
+            "description": "Degree of the polynomial kernel function"
+          },
+          {
+            "name": "gamma",
+            "type": "choice",
+            "default": "scale",
+            "choices": ["scale", "auto"],
+            "description": "Kernel coefficient for 'rbf', 'poly', and 'sigmoid'"
+          },
+          {
+            "name": "coef0",
+            "type": "float",
+            "default": 0.0,
+            "description": "Independent term in kernel function"
+          },
+          {
+            "name": "shrinking",
+            "type": "bool",
+            "default": true,
+            "description": "Whether to use the shrinking heuristic"
+          },
+          {
+            "name": "probability",
+            "type": "bool",
+            "default": false,
+            "description": "Whether to enable probability estimates"
+          },
+          {
+            "name": "tol",
+            "type": "float",
+            "default": 1e-3,
+            "description": "Tolerance for stopping criteria"
+          },
+          {
+            "name": "max_iter",
+            "type": "int",
+            "default": -1,
+            "description": "Hard limit on iterations within solver"
+          },
+          {
+            "name": "decision_function_shape",
+            "type": "choice",
+            "default": "ovr",
+            "choices": ["ovo", "ovr"],
+            "description": "Whether to use one-vs-one or one-vs-rest"
+          },
+          {
+            "name": "break_ties",
+            "type": "bool",
+            "default": false,
+            "description": "Whether or not to break ties"
+          },
+          {
+            "name": "random_state",
+            "type": "int",
+            "default": null,
+            "description": "Seed for random number generator"
+          }
+        ]
+      }
+    ]
+  }
