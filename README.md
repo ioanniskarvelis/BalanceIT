@@ -7,7 +7,9 @@
 [![Tailwind CSS 3.x](https://img.shields.io/badge/Tailwind_CSS-3.x-06B6D4?logo=tailwind-css&logoColor=white)](#)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#)
 
-An interactive Django application for analyzing imbalanced text datasets and training classifiers with resampling techniques.
+This project is the practical component of my 6‑month thesis. Its goal is to help people outside the AI community and those unfamiliar with ML perform text classification on their own datasets. It provides an interactive Django application for analyzing imbalanced text datasets and training classifiers with resampling techniques.
+
+You can read my thesis document here: [thesis-report.pdf](thesis-report.pdf)
 
 ## Features
 - Analyze class imbalance with multiple metrics (IR, KL, TV, Hellinger, etc.)
